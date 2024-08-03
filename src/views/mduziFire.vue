@@ -1,9 +1,12 @@
 <template>
-	<Layout
-		name="Lavender Soap"
-		description="A soothing lavender soap that relaxes your senses."
-		price="15.99"
-		imageUrl="../public/soaps/Untitled.jpeg" />
+	<div
+		class="max-w-md mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+		<Layout
+			name="Mduzi Fire"
+			description="A nice Pure Goat's Milk soap that nourishes your senses."
+			price="R17.99"
+			imageUrl="/soaps/Untitled.jpeg" />
+	</div>
 </template>
 
 <script setup>
