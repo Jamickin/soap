@@ -4,45 +4,44 @@ const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
 		{
-			path: "/soap/:id",
-			component: () => import("../views/blackMagic.vue"),
-			props: (route) => ({
-				name: route.query.name,
-				description: route.query.description,
-				price: route.query.price,
-				imageUrl: route.query.imageUrl,
-			}),
+			path: "/",
+			name: "layout",
+			component: () => import("../views/Layout.vue"),
 		},
 
 		{
 			path: "/blackMagic",
 			name: "blackMagic",
-			component: () => import("../views/blackMagic.vue"),
+			component: () =>
+				import("../components/blackMagic.vue"),
 		},
 		{
 			path: "/calmingStorm",
 			name: "calmingStorm",
-			component: () => import("../views/calmingStorm.vue"),
+			component: () =>
+				import("../components/calmingStorm.vue"),
 		},
 		{
 			path: "/aloeVera",
 			name: "aloeVera",
-			component: () => import("../views/aloeVera.vue"),
+			component: () => import("../components/aloeVera.vue"),
 		},
 		{
 			path: "/mduziFire",
 			name: "mduziFire",
-			component: () => import("../views/mduziFire.vue"),
+			component: () =>
+				import("../components/mduziFire.vue"),
 		},
 		{
 			path: "/pureGoatsMilk",
 			name: "pureGoatsMilk",
-			component: () => import("../views/pureGoatsMilk.vue"),
+			component: () =>
+				import("../components/pureGoatsMilk.vue"),
 		},
 		{
 			path: "/honeyDew",
 			name: "honeyDew",
-			component: () => import("../views/honeyDew.vue"),
+			component: () => import("../components/honeyDew.vue"),
 		},
 	],
 });
