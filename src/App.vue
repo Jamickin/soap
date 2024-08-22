@@ -1,7 +1,13 @@
 <script setup>
 	import { RouterView, RouterLink } from "vue-router";
+	import Header from "@/components/Header.vue";
 </script>
 
 <template>
-	<main class="my-20"><RouterView /></main>
+	<Header />
+	<main><RouterView /></main>
+	<!-- Footer -->
+	<footer class="text-center py-6">
+		<p>&copy; 2024 Dinkum Soaps. All rights reserved.</p>
+	</footer>
 </template>
