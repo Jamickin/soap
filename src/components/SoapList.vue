@@ -13,7 +13,7 @@
 				v-for="soap in soaps"
 				:key="soap.id"
 				@click="addToCartWithBanner(soap)"
-				class="flex flex-row-reverse bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+				class="hover:scale-105 transition-transform flex flex-row-reverse bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300">
 				<img
 					:src="soap.image"
 					alt="Soap Image"
