@@ -17,7 +17,9 @@
 				say hello? Fill out the form below, and we’ll get
 				back to you as soon as possible.
 			</p>
-			<form class="space-y-4">
+			<form
+				class="space-y-4"
+				@submit.prevent="sendMessage">
 				<div>
 					<label
 						for="name"
@@ -25,23 +27,13 @@
 						>Name</label
 					>
 					<input
+						v-model="customerName"
 						type="text"
 						id="name"
-						class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500"
+						class="mt-1 block w-full border placeholder:text-gray-500 text-gray-600 border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500"
 						placeholder="Your Name" />
 				</div>
-				<div>
-					<label
-						for="email"
-						class="block text-lg font-medium"
-						>Email</label
-					>
-					<input
-						type="email"
-						id="email"
-						class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500"
-						placeholder="Your Email" />
-				</div>
+
 				<div>
 					<label
 						for="message"
@@ -49,8 +41,9 @@
 						>Message</label
 					>
 					<textarea
+						v-model="message"
 						id="message"
-						class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500"
+						class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 placeholder:text-gray-500 text-gray-600"
 						rows="4"
 						placeholder="Your Message"></textarea>
 				</div>
@@ -65,3 +58,24 @@
 		</main>
 	</div>
 </template>
+
+<script setup>
+	import { ref } from "vue";
+
+	const customerName = ref("");
+	const message = ref("");
+
+	const sendMessage = () => {
+		if (!customerName.value || !message.value) {
+			alert("Please fill out all fields!");
+			return;
+		}
+
+		const messageBody = `Dear Nick,\n\n${message.value}\n\nThank you,\n${customerName.value}`;
+
+		const whatsappUrl = `https://wa.me/${+27659462806}?text=${encodeURIComponent(
+			messageBody
+		)}`;
+		window.open(whatsappUrl, "_blank");
+	};
+</script>

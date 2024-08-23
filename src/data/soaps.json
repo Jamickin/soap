@@ -4,39 +4,39 @@
 		"name": "Aloe Hydration Bar",
 		"description": "Experience deep hydration and rejuvenation with our Aloe Hydration Bar. Infused with the soothing properties of Aloe Vera, this soap not only moisturizes but also promotes healing, reducing the appearance of wrinkles and revitalizing your skin with every use.",
 		"ingredients": ["Aloe Vera", "Olive Oil"],
-		"image": "@/src/assets/soaps/AloeVera.jpeg",
-		"price": 125
+		"image": "https://firebasestorage.googleapis.com/v0/b/soap-b5eec.appspot.com/o/AloeVera.jpeg?alt=media&token=486723a4-f1e9-4cc5-b064-6e7af1ad302b",
+		"price": 90
 	},
 	{
 		"id": 2,
 		"name": "African Harmony Soap",
 		"description": "Rediscover balance and tranquility with our African Harmony Soap. Crafted with the finest Rosemary and Lavender, this soap is designed to reduce skin irritation, balance pH levels, and combat the signs of aging, leaving your skin feeling youthful and refreshed.",
 		"ingredients": ["Rosemary", "Lavender"],
-		"image": "@/src/assets/soaps/BlackMagic.jpeg",
-		"price": 125
+		"image": "https://firebasestorage.googleapis.com/v0/b/soap-b5eec.appspot.com/o/BlackMagic.jpeg?alt=media&token=7934257a-d929-407e-9728-7b302ae8725b",
+		"price": 90
 	},
 	{
 		"id": 3,
 		"name": "Goat’s Milk Nourishing Bar",
 		"description": "Pamper your skin with the Goat’s Milk Nourishing Bar, a gentle cleanser that hydrates and moisturizes deeply. Ideal for those with sensitive skin, this soap helps alleviate eczema and restore your skin’s natural softness.",
 		"ingredients": ["Goat's Milk"],
-		"image": "@/src/assets/soaps/GoatsMilk.jpeg",
-		"price": 125
+		"image": "https://firebasestorage.googleapis.com/v0/b/soap-b5eec.appspot.com/o/BlackMagic.jpeg?alt=media&token=7934257a-d929-407e-9728-7b302ae8725b",
+		"price": 90
 	},
 	{
 		"id": 4,
 		"name": "Charcoal Glow Soap",
 		"description": "Achieve a radiant complexion with the Charcoal Glow Soap. Infused with activated charcoal and goat’s milk, this soap clarifies your skin, helping to remove impurities while maintaining a healthy skin flora, leaving your skin clear and glowing.",
 		"ingredients": ["Activated Charcoal", "Goat's Milk"],
-		"image": "@/src/assets/soaps/MduziFire.jpeg",
-		"price": 125
+		"image": "https://firebasestorage.googleapis.com/v0/b/soap-b5eec.appspot.com/o/MduziFire.jpeg?alt=media&token=0f6e0601-55f5-4d74-bdc8-fab0b29789c2",
+		"price": 90
 	},
 	{
 		"id": 5,
 		"name": "Honey Turmeric Bliss",
 		"description": "Indulge in the soothing blend of honey and turmeric with our Honey Turmeric Bliss soap. Perfect for dry and sensitive skin, this bar reduces inflammation and nourishes your skin, giving it a healthy, radiant glow.",
 		"ingredients": ["Goat's Milk", "Honey", "Turmeric"],
-		"image": "@/src/assets/soaps/Untitled.jpeg",
-		"price": 125
+		"image": "https://firebasestorage.googleapis.com/v0/b/soap-b5eec.appspot.com/o/HoneyDew.png?alt=media&token=e5c19a14-d462-4f9b-bd3a-8cbee42763b5",
+		"price": 90
 	}
 ]

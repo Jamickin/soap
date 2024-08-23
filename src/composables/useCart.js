@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 export function useCart() {
 	const cart = ref([]);
 	const showCart = ref(false);
+	const customerName = ref("");
 
 	const addToCart = (soap) => {
 		cart.value.push(soap);
@@ -19,7 +20,7 @@ export function useCart() {
 		)
 	);
 
-	const prepareEmail = () => {
+	const prepareWhatsAppMessage = () => {
 		if (cart.value.length === 0) {
 			alert("Your cart is empty!");
 			return;
@@ -27,27 +28,26 @@ export function useCart() {
 
 		const cartInfo = cart.value
 			.map((soap, index) => {
-				const ingredients = soap.ingredients.join(", ");
-				return `${index + 1}. ${soap.name} - ${
-					soap.description
-				}\nIngredients: ${ingredients}\nPrice: $${
+				return `${index + 1}. ${soap.name}\nPrice: R${
 					soap.price
 				}`;
 			})
 			.join("\n\n");
-		const emailBody = `Dear Nick,\n\nI have ordered ${cart.value.length}x soap(s). Here are the details:\n\n${cartInfo}\n\nTotal Price: $${totalPrice.value}\n\nPlease enter any additional details here...\n\nThank you,\n[Your Name]`;
+		const messageBody = `Dear Nick,\n\nI have ordered ${cart.value.length}x soap(s). Here are the details:\n\n${cartInfo}\n\nTotal Price: R${totalPrice.value}\n\nThank you,\n${customerName.value}`;
 
-		window.location.href = `mailto:nick@example.com?subject=Soap Order&body=${encodeURIComponent(
-			emailBody
+		const whatsappUrl = `https://wa.me/${+27659462806}?text=${encodeURIComponent(
+			messageBody
 		)}`;
+		window.open(whatsappUrl, "_blank");
 	};
 
 	return {
 		cart,
 		showCart,
+		customerName,
 		addToCart,
 		toggleCart,
-		prepareEmail,
+		prepareWhatsAppMessage,
 		totalPrice,
 	};
 }

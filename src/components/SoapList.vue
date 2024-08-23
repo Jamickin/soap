@@ -56,28 +56,30 @@
 					v-for="(soap, index) in cart"
 					:key="index"
 					class="border-b border-gray-300 pb-2">
-					<strong>{{ soap.name }}</strong> -
-					{{ soap.description }}
-					<ul class="mt-2 list-disc list-inside">
-						<li
-							v-for="ingredient in soap.ingredients"
-							:key="ingredient">
-							{{ ingredient }}
-						</li>
-					</ul>
-					<strong>{{ soap.price }}</strong>
+					<strong>{{ soap.name }}</strong>
+					<br />
+					<p>R{{ soap.price }}</p>
 				</li>
 			</ul>
-			<div>Total Price: {{ totalPrice }}</div>
+			<div>Total Price: R{{ totalPrice }}</div>
 		</div>
 
-		<!-- Email Button -->
-		<div class="mt-6 text-center">
-			<button
-				@click="prepareEmail"
-				class="bg-gray-600 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded transition duration-300">
-				Email Cart Info
-			</button>
+		<!-- Customer Name and Phone Number Inputs -->
+		<div class="mt-6 space-y-4">
+			<input
+				v-model="customerName"
+				type="text"
+				class="placeholder:text-gray-500 text-gray-600 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"
+				placeholder="Your Name" />
+
+			<!-- WhatsApp Button -->
+			<div class="mt-6 text-center">
+				<button
+					@click="prepareWhatsAppMessage"
+					class="bg-green-600 hover:bg-green-800 text-white fo nt-semibold py-2 px-4 rounded transition duration-300">
+					Send Cart Info via WhatsApp
+				</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -90,9 +92,10 @@
 	const {
 		cart,
 		showCart,
+		customerName,
 		addToCart,
 		toggleCart,
-		prepareEmail,
+		prepareWhatsAppMessage,
 		totalPrice,
 	} = useCart();
 	const soaps = ref([]);
