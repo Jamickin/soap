@@ -26,6 +26,11 @@ export function useCart() {
 			return;
 		}
 
+		if (customerName.value === "") {
+			alert("Please enter your name.");
+			return;
+		}
+
 		const cartInfo = cart.value
 			.map((soap, index) => {
 				return `${index + 1}. ${soap.name}\nPrice: R${
