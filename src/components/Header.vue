@@ -1,20 +1,13 @@
 <template>
-	<header class="text-gray-600 font-bold py-4 shadow-md">
-		<div
-			class="container mx-auto flex justify-between items-center">
-			<!-- Logo / Brand Name -->
-			<!-- Hamburger Menu for Mobile -->
-			<div class="lg:hidden relative z-50">
-				<button
-					@click="toggleMenu"
-					class="focus:outline-none transform transition-transform duration-300"
-					:class="{
-						'translate-x-56': menuOpen,
-						'translate-x-0': !menuOpen,
-					}">
-					<!-- Hamburger Icon -->
+	<header class="text-gray-600 font-bold shadow-md">
+		<div class="flex justify-between items-center">
+			<div
+				class="lg:hidden z-50 relative transition-all duration-300"
+				:class="{ 'w-12': !menuOpen, 'w-1/3': menuOpen }">
+				<button class="focus:outline-none">
 					<svg
-						class="w-12 h-12 pr-4"
+						@click="toggleMenu"
+						class="absolute right-0 top-0 w-8 h-8 items-center"
 						fill="none"
 						stroke="white"
 						viewBox="0 0 24 24"
@@ -33,33 +26,32 @@
 				>
 			</div>
 
-			<!-- Navigation Links -->
 			<nav
-				class="fixed inset-y-0 left-0 w-64 transform transition-transform duration-300 lg:static lg:transform-none bg-gray-800 lg:bg-transparent lg:flex lg:items-center lg:space-x-6 lg:text-lg"
+				class="fixed inset-y-0 left-0 w-1/3 bg-gray-800 transition-transform duration-300 transform lg:static lg:transform-none lg:bg-transparent lg:flex lg:items-center lg:space-x-6 lg:text-lg"
 				:class="{
 					'-translate-x-full': !menuOpen,
 					'translate-x-0': menuOpen,
 				}">
 				<ul
-					class="flex flex-col space-y-4 p-6 lg:flex-row lg:space-y-0 lg:space-x-6 text-lg">
+					class="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-6 text-lg">
 					<li>
 						<router-link
+							@click="toggleMenu"
 							:to="{ name: 'shop' }"
-							@click="closeMenu"
 							>Shop</router-link
 						>
 					</li>
 					<li>
 						<router-link
+							@click="toggleMenu"
 							:to="{ name: 'about' }"
-							@click="closeMenu"
 							>About</router-link
 						>
 					</li>
 					<li>
 						<router-link
+							@click="toggleMenu"
 							:to="{ name: 'contact' }"
-							@click="closeMenu"
 							>Contact</router-link
 						>
 					</li>
@@ -69,20 +61,12 @@
 	</header>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				menuOpen: false,
-			};
-		},
-		methods: {
-			toggleMenu() {
-				this.menuOpen = !this.menuOpen;
-			},
-			closeMenu() {
-				this.menuOpen = false;
-			},
-		},
-	};
+<script setup>
+	import { ref } from "vue";
+
+	const menuOpen = ref(false);
+
+	function toggleMenu() {
+		menuOpen.value = !menuOpen.value;
+	}
 </script>

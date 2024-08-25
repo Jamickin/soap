@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-10 max-w-4xl mx-auto">
+	<div class="mt-10 max-w-4xl mx-auto lg:p-0 px-12">
 		<!-- Top Banner -->
 		<div
 			v-if="showBanner"
@@ -13,11 +13,11 @@
 				v-for="soap in soaps"
 				:key="soap.id"
 				@click="addToCartWithBanner(soap)"
-				class="hover:scale-105 transition-transform flex flex-row-reverse bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+				class="lg:hover:scale-105 transition-transform flex lg:flex-row-reverse place-items-center flex-col bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg duration-300 mx-auto text-center lg:text-left">
 				<img
 					:src="soap.image"
 					alt="Soap Image"
-					class="w-32 h-32 object-cover rounded-lg ml-4" />
+					class="lg:w-32 lg:h-32 w-64 h-auto lg:object-cover rounded-lg ml-4" />
 				<div class="flex-1 p-4">
 					<h2 class="text-xl font-semibold">
 						{{ soap.name }}
