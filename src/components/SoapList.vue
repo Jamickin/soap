@@ -48,8 +48,7 @@
 				class="bg-gray-600 text-white font-semibold py-2 px-4 rounded transition duration-300">
 				{{ showCart ? "Hide Cart" : "View Cart" }} ({{
 					cart.length
-				}}
-				Items)
+				}} Items)
 			</button>
 		</div>
 
@@ -67,17 +66,21 @@
 						<strong>{{ soap.name }}</strong>
 						<br />
 						<p>R{{ soap.price }}</p>
+						<div class="flex items-center mt-2">
+							<button @click="decreaseQuantity(soap)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-l">-</button>
+							<span class="px-3">{{ soap.quantity }}</span>
+							<button @click="increaseQuantity(soap)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-r">+</button>
+						</div>
 					</li>
 				</ul>
-				<div>Total Price: R{{ totalPrice }}</div>
-				<!-- Customer Name and Phone Number Inputs -->
+				<div class="mt-4">Total Price: R{{ totalPrice }}</div>
+				<!-- Customer Name Input -->
 				<div class="mt-6 space-y-4">
 					<input
 						v-model="customerName"
 						type="text"
 						class="placeholder:text-gray-500 text-gray-600 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"
 						placeholder="Your Name" />
-
 					<!-- WhatsApp Button -->
 					<div class="mt-6 text-center">
 						<button
@@ -94,35 +97,57 @@
 </template>
 
 <script setup>
-	import { ref, onMounted } from "vue";
-	import { useCart } from "@/composables/useCart";
-	import soapData from "@/data/soaps.json";
+import { ref, onMounted } from "vue";
+import { useCart } from "@/composables/useCart";
+import soapData from "@/data/soaps.json";
 
-	const {
-		cart,
-		showCart,
-		customerName,
-		addToCart,
-		toggleCart,
-		prepareWhatsAppMessage,
-		totalPrice,
-	} = useCart();
+const {
+	cart,
+	showCart,
+	customerName,
+	addToCart,
+	toggleCart,
+	prepareWhatsAppMessage,
+	totalPrice,
+} = useCart();
 
-	const soaps = ref([]);
+const soaps = ref([]);
+const showBanner = ref(false);
 
-	const showBanner = ref(false);
+onMounted(() => {
+	soaps.value = soapData;
+});
 
-	onMounted(() => {
-		soaps.value = soapData;
-	});
+const addToCartWithBanner = (soap) => {
+	// Check if the soap is already in the cart
+	const existingItem = cart.value.find(item => item.id === soap.id);
+	if (existingItem) {
+		existingItem.quantity++;
+	} else {
+		// Add the soap to the cart with a quantity of 1
+		cart.value.push({ ...soap, quantity: 1 });
+	}
 
-	const addToCartWithBanner = (soap) => {
-		addToCart(soap);
-		showBanner.value = true;
+	showBanner.value = true;
+	// Hide the banner after 3 seconds
+	setTimeout(() => {
+		showBanner.value = false;
+	}, 3000);
+};
 
-		// Hide the banner after 3 seconds
-		setTimeout(() => {
-			showBanner.value = false;
-		}, 3000);
-	};
+
+const increaseQuantity = (item) => {
+	item.quantity++;
+};
+
+const decreaseQuantity = (item) => {
+	if (item.quantity > 1) {
+		item.quantity--;
+	} else {
+		const index = cart.value.indexOf(item);
+		if (index > -1) {
+			cart.value.splice(index, 1);
+		}
+	}
+};
 </script>

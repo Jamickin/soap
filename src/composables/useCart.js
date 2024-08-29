@@ -6,7 +6,12 @@ export function useCart() {
 	const customerName = ref("");
 
 	const addToCart = (soap) => {
-		cart.value.push(soap);
+		const existingItem = cart.value.find(item => item.id === soap.id);
+		if (existingItem) {
+			existingItem.quantity++;
+		} else {
+			cart.value.push({ ...soap, quantity: 1 });
+		}
 	};
 
 	const toggleCart = () => {
@@ -15,7 +20,15 @@ export function useCart() {
 
 	const totalPrice = computed(() =>
 		cart.value.reduce(
-			(total, soap) => total + soap.price,
+			(total, soap) => total + soap.price * soap.quantity,
+			0
+		)
+	);
+
+	// Calculate the total number of soaps in the cart
+	const totalItemsInCart = computed(() =>
+		cart.value.reduce(
+			(total, soap) => total + soap.quantity,
 			0
 		)
 	);
@@ -33,14 +46,13 @@ export function useCart() {
 
 		const cartInfo = cart.value
 			.map((soap, index) => {
-				return `${index + 1}. ${soap.name}\nPrice: R${
-					soap.price
-				}`;
+				return `${index + 1}. ${soap.name} x${soap.quantity}\nPrice: R${soap.price}`;
 			})
 			.join("\n\n");
-		const messageBody = `Dear Nick,\n\nI have ordered ${cart.value.length}x soap(s). Here are the details:\n\n${cartInfo}\n\nTotal Price: R${totalPrice.value}\n\nThank you,\n${customerName.value}`;
 
-		const whatsappUrl = `https://wa.me/${+27659462806}?text=${encodeURIComponent(
+		const messageBody = `Dear Nick,\n\nI have ordered ${totalItemsInCart.value}x soap(s). Here are the details:\n\n${cartInfo}\n\nTotal Price: R${totalPrice.value}\n\nThank you,\n${customerName.value}`;
+
+		const whatsappUrl = `https://wa.me/27659462806?text=${encodeURIComponent(
 			messageBody
 		)}`;
 		window.open(whatsappUrl, "_blank");
@@ -54,5 +66,6 @@ export function useCart() {
 		toggleCart,
 		prepareWhatsAppMessage,
 		totalPrice,
+		totalItemsInCart,
 	};
 }
